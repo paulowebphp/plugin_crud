@@ -1,0 +1,1 @@
+Plugin feito para WordPress que cria uma tabela personalizada no Banco de Dados, faz listagem, inserção, update e delete (CRUD) com essa Tabela, e performa uma busca simples no Front-End.
