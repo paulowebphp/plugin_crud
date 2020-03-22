@@ -19,10 +19,11 @@ class Product
 
   const FIELD_PREFIX = 'cp_';
   const TEXT_DOMAIN = 'cadastro-produto';
+  const TAXONOMY = 'cadastro-produto-category';
+
   const TABLE_NAME = 'cadastro_produto';
   const REVIEW_RATING = 'cadastro_produto';
-
-
+  
   private static $instance;
 
 
@@ -275,7 +276,7 @@ class Product
   public static function gp_add_cpt_post_names_to_main_query( $query ) 
   {
     // Bail if this is not the main query.
-    if ( ! $query->is_main_query() ) 
+    if ( !$query->is_main_query() ) 
     {
       return;
     }//end if
@@ -284,7 +285,7 @@ class Product
 
 
     // Bail if this query doesn't match our very specific rewrite rule.
-    if ( ! isset( $query->query['page'] ) || 2 !== count( $query->query ) ) 
+    if ( !isset( $query->query['page'] ) || 2 !== count( $query->query ) ) 
     {
       return;
     }//end if
@@ -1705,7 +1706,7 @@ public static function product_register() {
 		'description'           => __( 'Página onde ficará o formulário de Busca do Produto', Product::TEXT_DOMAIN ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail','page-attributes' ),
-		'taxonomies'            => array( 'cadastro-produto-category' ),
+		'taxonomies'            => array( Product::TAXONOMY ),
 		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,
@@ -1923,7 +1924,7 @@ public static function product_category_register() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'cadastro-produto-category', array( 'cadastro-produto' ), $args );
+	register_taxonomy( Product::TAXONOMY, array( Product::TEXT_DOMAIN ), $args );
 
 }
 //add_action( 'init', 'product_category', 0 );
