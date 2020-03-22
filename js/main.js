@@ -14,11 +14,7 @@ jQuery(document).on('click', '#button-delete>button', function(e){
 });
     
 
-
-
-
-
-    
+ 
     
     
 

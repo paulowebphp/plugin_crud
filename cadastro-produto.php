@@ -3,7 +3,7 @@ require_once dirname(__FILE__) . '/lib/class-tgm-plugin-activation.php';
 //require_once dirname(__FILE__) .'/inc/cpts.php';
 /*
 Plugin Name: Cadastro de Produtos
-Description: Plugin desenvolvido para cadastro de produtos, cuja finalidade principal é a de consultar a garantia do produto, a partir do seu número de série
+Description: Plugin de cadastro e consulta de produtos. Este plugin faz parte do Portfolio do autor e pretende demonstrar um sistema CRUD básico de cadastro de produtos no Back-End e consulta dos mesmos a partir do seu número de série no Front-End.
 Version: 1.0
 Author: Jose Paulo Carvalho
 Author URI: https://fat32.com.br
@@ -181,6 +181,19 @@ class Product
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
   /*
   public static function rewrite_rules_for_removing_post_type_slug()
   {
@@ -195,6 +208,23 @@ class Product
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   public static function gp_remove_cpt_slug( $post_link, $post ) 
   {
     if ( Product::TEXT_DOMAIN === $post->post_type && 'publish' === $post->post_status ) 
@@ -204,6 +234,35 @@ class Product
     }//end if
     return $post_link;
   }//emd method
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -341,6 +400,8 @@ class Product
 
     //wp_enqueue_style( 'am_admin_bootstrap');
 
+    /*
+    
     wp_enqueue_style( 
         
       'template-css', //identificador
@@ -350,6 +411,7 @@ class Product
       'all' //tipo de midia (print, screen, all)
 
     );
+    */
 
     
 
@@ -364,6 +426,9 @@ class Product
     );
 
 
+    
+    /*
+    
     wp_enqueue_script(
 
       'bootstrap-css', //identificador
@@ -385,7 +450,12 @@ class Product
       null, //versão (nao obrigatorio)
       true //onde inserir o script (footer - true ou header - false (padrão))
 
-  );
+    );*/
+
+
+
+
+
 
   }//end method
 
@@ -797,77 +867,86 @@ class Product
               </div>
 
               
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col"><?php echo __("Produto",Product::TEXT_DOMAIN); ?></th>
-                      <th scope="col"><?php echo __("No Série",Product::TEXT_DOMAIN); ?></th>
-                      <th scope="col"><?php echo __("Garantia",Product::TEXT_DOMAIN); ?></th>
-                      <th scope="col"><?php echo __("Modificado Em",Product::TEXT_DOMAIN); ?></th>
-                      <th scope="col"><?php echo __("Criado Em",Product::TEXT_DOMAIN); ?></th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                              
                     
 
-                    <?php
+                <?php
 
 
 
-                      $html = '';
-                      $edit_path = '';
-                      $edit_url = '';
+                  $html = '';
+                  $edit_path = '';
+                  $edit_url = '';
 
-                      foreach( $results as $row )
-                      {
+                  foreach( $results as $row )
+                  {
 
-                        /*
-                        $html = '<p>'. $row['id'] .'</p>';
-                        $html .= '<p>'. $row['serial_number'] .'</p>';
-                        $html .= '<p>'. $row['warranty_term'] .'</p>';
-                        $html .= '<p>'. $row['product_posted'] .'</p>';
-                        $html .= '<p>'. $row['product_modified'] .'</p>';
-                        */
+                    /*
+                    $html = '<p>'. $row['id'] .'</p>';
+                    $html .= '<p>'. $row['serial_number'] .'</p>';
+                    $html .= '<p>'. $row['warranty_term'] .'</p>';
+                    $html .= '<p>'. $row['product_posted'] .'</p>';
+                    $html .= '<p>'. $row['product_modified'] .'</p>';
+                    */
 
-                        $edit_path = "options.php?page=edit_product";
-                        $edit_url = admin_url($edit_path);
+                    $edit_path = "options.php?page=edit_product";
+                    $edit_url = admin_url($edit_path);
 
-                        $delete_path = "options.php?page=delete_product";
-                        $delete_url = admin_url($delete_path);
-                        
-                        
-
-                        ?>
-
-                          <tr>
-                            <td><?php echo $row->id; ?></td>
-                            <td><?php echo $row->product; ?></td>
-                            <td><?php echo $row->serial_number; ?></td>
-                            <td><?php echo $row->warranty_term . (((int)$row->warranty_term === 1)?' dia':' dias'); ?></td>
-                            <td><?php echo $row->product_modified; ?></td>
-                            <td><?php echo $row->product_date; ?></td>
-                            <td>
-                              <a href='<?php echo $edit_url; ?>&id=<?php echo $row->id; ?>'><button class="button1"><?php echo __('Editar',Product::TEXT_DOMAIN); ?></button></a>
-                              <a id="button-delete" href='<?php echo $delete_url; ?>&id=<?php echo $row->id; ?>'><button class="button2"><?php echo __('Deletar',Product::TEXT_DOMAIN); ?></button></a>
-                            </td>
-                          </tr>
-
-                        <?php
-
-                      }//end foreach
-                  
-
+                    $delete_path = "options.php?page=delete_product";
+                    $delete_url = admin_url($delete_path);
+                    
+                    $create_date = new DateTime($row->product_date);
+                    $update_date = new DateTime($row->product_modified);
 
                     ?>
 
-                    </tr>
                       
-                  </tbody>
-                </table>
-              </div>
+
+
+                      <div class="card">
+
+                      
+                        <div class="card-header bottom3">
+                          <h2><?php echo $row->id . '- ' . $row->product; ?></h2>
+                        </div>
+
+                        <div class="card-body">
+                          <p><span class="bold1"><?php echo __("No de Série: ",Product::TEXT_DOMAIN); ?></span><?php echo $row->serial_number; ?></p>
+
+
+                          <p><span class="bold1"><?php echo __("Garantia: ",Product::TEXT_DOMAIN); ?></span><?php echo $row->warranty_term . (((int)$row->warranty_term === 1)?' dia':' dias'); ?></p>
+
+                          <p><span class="bold1"><?php echo __("Criado em: ",Product::TEXT_DOMAIN); ?></span><?php echo $update_date->format('d/m/Y') . ' às ' . $create_date->format('H:i'); ?></p>
+
+                          <p><span class="bold1"><?php echo __("Modificado em: ",Product::TEXT_DOMAIN); ?></span><?php echo $update_date->format('d/m/Y') . ' às ' . $update_date->format('H:i'); ?></p>
+                          
+                        </div>
+
+
+                        
+
+                        <div class="card-footer top2">
+                          <p>
+                            <a href='<?php echo $edit_url; ?>&id=<?php echo $row->id; ?>'><button class="button1 pointer"><?php echo __('Editar',Product::TEXT_DOMAIN); ?></button></a>
+
+                            <a onclick='return confirm("Deseja realmente excluir este ítem?")' href='<?php echo $delete_url; ?>&id=<?php echo $row->id; ?>'><button class="button2 pointer"><?php echo __('Deletar',Product::TEXT_DOMAIN); ?></button></a>
+                          </p>
+                        </div>
+                      
+                      
+                      </div>
+
+                    <?php
+
+                  }//end foreach
+              
+
+
+                ?>
+
+                   
+                      
+                  
             </div>
           </div>
         </div><!--container-->
@@ -877,6 +956,17 @@ class Product
 
 
   }//end mehthod
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -933,6 +1023,10 @@ class Product
 
       $create_date = new DateTime("now");
       $create_date->setTimezone($timezone);
+
+      //echo '<pre>';
+      //var_dump($create_date->format('d/m/Y H:i:s'));
+
 
       
       $wpdb->insert(
@@ -1012,7 +1106,7 @@ class Product
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="warranty_term" name="warranty_term" id="warranty_term">
               </div>
               
-              <input class="button1 top2" type="submit" value="Salvar">
+              <input class="button1 top2 pointer" type="submit" value="Salvar">
 
             </form>
           </div>
@@ -1045,6 +1139,15 @@ class Product
 
 
 
+
+
+
+
+
+
+
+
+  
 
 
 
@@ -1175,7 +1278,7 @@ class Product
                   <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="warranty_term" name="warranty_term" id="warranty_term" value="<?php echo $results[0]->warranty_term; ?>">
                 </div>
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <input class="button1 top2" type="submit" value="Salvar">
+                <input class="button1 top2 pointer" type="submit" value="Salvar">
 
               </form>
             </div>

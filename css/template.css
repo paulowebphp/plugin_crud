@@ -13,28 +13,28 @@ body{
     color: #fff;
     border: none;
     border-radius: 20px;
-    padding: 12px 24px;
+    padding: 10px 16px;
 }
 .button1{
     background: #5e299a;
     color: #fff;
     border: none;
     border-radius: 20px;
-    padding: 12px 24px;
+    padding: 10px 16px;
 }
 .button2{
     background: #171f26;
     color: #fff;
     border: none;
     border-radius: 20px;
-    padding: 12px 24px;
+    padding: 10px 16px;
 }
 .button3{
     background: #96281b;
     color: #fff;
     border: none;
     border-radius: 20px;
-    padding: 12px 24px;
+    padding: 10px 16px;
 }
 #clickme{
     background-color: pink;
@@ -42,10 +42,18 @@ body{
 .decoration-none{
     text-decoration:none!important;
 }
-
-
-
-
+.bold1{
+    font-weight: bolder;
+}
+.pointer{
+    cursor: pointer!important;
+}
+.alert1 {
+    text-align: center;
+}
+.alert1 h2{
+    font-size: 2.4rem;
+}
 
 
 

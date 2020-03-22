@@ -2,6 +2,9 @@
 
   <section class="site">
     <div class="container">
+
+
+    
       <div class="row">
         <div class="col-md-6 col-12">
 
@@ -51,69 +54,117 @@
 
           //var_dump($results);
 
+          $count = count($results);
+
+
+          //echo '<pre>';
+          //var_dump($results);
+          //var_dump($count);
+
           $html = '';
 
-      ?>
 
 
-        <div class="row">
-          <div class="col-12">
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Produto</th>
-                    <th scope="col">No Serial</th>
-                    <th scope="col">Garantia</th>
-                    <th scope="col">Modificado em</th>
-                    <th scope="col">Criado em</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
+          if( (int)$count != 0 )
+          {
 
-                  <?php
-
-                    foreach($results as $row)
-                    {
-                      
-                      //$days = ((int)$row->warranty_term === 1)?' dia':' dias';
-                      $dt_posted = new DateTime($row->product_warranty_date);
-                      $dt_modified = new DateTime($row->product_warranty_modified);
-
-                      ?>
+            ?>
 
 
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
                         <tr>
-                          <td><?php echo $row->id; ?></td>
-                          <td><?php echo $row->product; ?></td>
-                          <td><?php echo $row->serial_number; ?></td>
-                          <td><?php echo $row->warranty_term . (((int)$row->warranty_term === 1)?' dia':' dias'); ?></td>
-                          <td><?php echo $dt_modified->format('d/m/Y H:i:s'); ?></td>
-                          <td><?php echo $dt_posted->format('d/m/Y H:i:s'); ?></td>
+                          <th scope="col">#</th>
+                          <th scope="col"><?php echo __("Produto",Product::TEXT_DOMAIN); ?></th>
+                          <th scope="col"><?php echo __("No de Série",Product::TEXT_DOMAIN); ?></th>
+                          <th scope="col"><?php echo __("Garantia",Product::TEXT_DOMAIN); ?></th>
+                          <th scope="col"><?php echo __("Modificado em",Product::TEXT_DOMAIN); ?></th>
+                          <th scope="col"><?php echo __("Criado em",Product::TEXT_DOMAIN); ?></th>
                         </tr>
+                      </thead>
+                      <tbody>
+                        
 
-                      <?php
+                        <?php
+
+                          foreach($results as $row)
+                          {
+                            
+                            //$days = ((int)$row->warranty_term === 1)?' dia':' dias';
+                            $dt_posted = new DateTime($row->product_date);
+                            $dt_modified = new DateTime($row->product_modified);
+
+                            ?>
 
 
-                    }//end foreach
-                    
-                
-                  ?>
+                              <tr>
+                                <td><?php echo $row->id; ?></td>
+                                <td><?php echo $row->product; ?></td>
+                                <td><?php echo $row->serial_number; ?></td>
+                                <td><?php echo $row->warranty_term . (((int)$row->warranty_term === 1)?' dia':' dias'); ?></td>
+                                <td><?php echo $dt_modified->format('d/m/Y H:i:s'); ?></td>
+                                <td><?php echo $dt_posted->format('d/m/Y H:i:s'); ?></td>
+                              </tr>
+
+                            <?php
+
+
+                          }//end foreach
+                          
+                      
+                        ?>
+
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div><!--row-->
+              
+
+            
+          
+          <?php
+
+          }//end if
+          else
+          {
+            
+            ?>
+
+              <div class="row">
+
+                <div class="col-12">
+
+                  <div class="alert alert-light alert1" role="alert">
+                    <h2>
+
+                      <?php echo __("Não foi encontrado nenhum resultado | Por favor, verifique o número digitado e tente novamente",Product::TEXT_DOMAIN); ?>
+
+                    </h2>
+                  </div>
 
                   
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div><!--row-->
 
-      <?php }//end if ?>
+                </div>
+
+              </div>
+
+
+            <?php
+
+          }//end else
+
+       }//end if
+       
+       ?>
 
     </div><!--container-->
   </section>
-
+      
 <?php
 
   get_footer();
