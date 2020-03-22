@@ -136,7 +136,7 @@ class Product
   private function __construct() 
   {
 
-    
+
       add_filter( 'post_type_link', 'Product::gp_remove_cpt_slug', 10, 2 );
 
       add_action( 'pre_get_posts', 'Product::gp_add_cpt_post_names_to_main_query' );
@@ -274,27 +274,39 @@ class Product
 
   public static function gp_add_cpt_post_names_to_main_query( $query ) 
   {
+
+    
+
     // Bail if this is not the main query.
     if ( !$query->is_main_query() ) 
     {
       return;
+
     }//end if
 
-
-
+    //echo '<pre>';
+    //var_dump(!$query->is_main_query());
+    
+    //var_dump(!isset( $query->query['page'] ) || 2 !== count( $query->query ));
+    //var_dump(empty( $query->query['name'] ));
+    //var_dump($query->query['name']);
+    //var_dump( empty( $query->query['name'] ) && empty( $query->query['pagename'] ));
+    //var_dump($query);
 
     // Bail if this query doesn't match our very specific rewrite rule.
     if ( !isset( $query->query['page'] ) || 2 !== count( $query->query ) ) 
     {
       return;
+
     }//end if
 
 
 
     // Bail if we're not querying based on the post name.
-    if ( empty( $query->query['name'] ) ) 
+    if ( empty( $query->query['name'] ) && empty( $query->query['pagename'] ) ) 
     {
       return;
+
     }//end if
 
 
