@@ -23,7 +23,7 @@ class Product
 
   const TABLE_NAME = 'cadastro_produto';
   const REVIEW_RATING = 'cadastro_produto';
-  
+
   private static $instance;
 
 
@@ -136,6 +136,10 @@ class Product
   private function __construct() 
   {
 
+    
+      add_filter( 'post_type_link', 'Product::gp_remove_cpt_slug', 10, 2 );
+
+      add_action( 'pre_get_posts', 'Product::gp_add_cpt_post_names_to_main_query' );
 
       add_action( 'admin_menu', array( $this,'set_custom_fields') );
 
@@ -171,11 +175,6 @@ class Product
       add_action('template_include',array($this,'add_cpt_template'));
 
       //add_action('init', 'Product::rewrite_rules_for_removing_post_type_slug', 1, 1);
-
-      add_filter( 'post_type_link', 'Product::gp_remove_cpt_slug', 10, 2 );
-
-      add_action( 'pre_get_posts', 'Product::gp_add_cpt_post_names_to_main_query' );
-
 
   }//end construct
 
@@ -228,7 +227,7 @@ class Product
 
   public static function gp_remove_cpt_slug( $post_link, $post ) 
   {
-    if ( Product::TEXT_DOMAIN === $post->post_type && 'publish' === $post->post_status ) 
+    if ( Product::TEXT_DOMAIN === $post->post_type && 'publish' === $post->post_status )
     {
         $post_link = str_replace( '/' . $post->post_type . '/', '/', $post_link );
 
