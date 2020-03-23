@@ -52,19 +52,26 @@
           <ul>
           <?php
             $count = 0;
-            while( $count <= 3 )
+            foreach( $results2 as $row )
             {
               
-              ?>
+              if($count < 3)
+              {
 
-              <li><?php echo $results2[$count]->serial_number; ?></li>
+                ?>
 
-              <?php
+                  <li><?php echo $row->serial_number; ?></li>
 
+                <?php
+
+                
+
+              }//end if
+              
 
               $count++;
 
-            }//end while
+            }//end foreach
           
           ?>
           </ul>
