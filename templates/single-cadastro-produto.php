@@ -16,7 +16,7 @@
     //var_dump($wpdb->base_prefix);
     //var_dump($wpdb);
 
-    $results2 = $wpdb->get_results( "SELECT * FROM {$table_name}", OBJECT );
+    $results2 = $wpdb->get_results( "SELECT * FROM {$table_name} ORDER BY product_date DESC", OBJECT );
 
     //var_dump($results2);
   

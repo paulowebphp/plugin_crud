@@ -892,7 +892,7 @@ class Product
 
     }//end if
 
-    $results = $wpdb->get_results( "SELECT * FROM {$table_name}", OBJECT );
+    $results = $wpdb->get_results( "SELECT * FROM {$table_name} ORDER BY product_date DESC", OBJECT );
 
     $create_path = 'admin.php?page=create_product';
     $create_url = admin_url($create_path);
