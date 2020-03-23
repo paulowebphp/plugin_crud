@@ -1,12 +1,34 @@
 <?php get_header(); ?>
 
+  <?php
+  
+    global $wpdb;
+
+    $table_name = $wpdb->base_prefix . Product::TABLE_NAME;
+    //$serial_number = $_POST['serial_number'];
+
+    //echo '<pre>';
+    //echo '<h2>Front</h2>';
+    //var_dump($_POST);
+    //var_dump($serial_number);
+    //var_dump($table_name);
+    //var_dump($wpdb->prefix);
+    //var_dump($wpdb->base_prefix);
+    //var_dump($wpdb);
+
+    $results2 = $wpdb->get_results( "SELECT * FROM {$table_name}", OBJECT );
+
+    //var_dump($results2);
+  
+  ?>
+
   <section class="site">
     <div class="container">
 
 
     
       <div class="row">
-        <div class="col-md-6 col-12">
+        <div class="col-md-8 col-12">
 
           <form method="post">
 
@@ -19,6 +41,37 @@
             <input class="top2 bottom2 decoration-none" type="submit" value="Buscar">
           </form>
         </div>
+
+
+        <div class="col-md-4 col-12">
+
+          <div class="section1">
+
+          <h3><?php echo __("Você pode testar a busca com um dos números de série a seguir:",Product::TEXT_DOMAIN); ?></h3>
+
+          <ul>
+          <?php
+            $count = 0;
+            while( $count <= 3 )
+            {
+              
+              ?>
+
+              <li><?php echo $results2[$count]->serial_number; ?></li>
+
+              <?php
+
+
+              $count++;
+
+            }//end while
+          
+          ?>
+          </ul>
+
+          </div>
+        </div>
+        
       </div>
 
 
@@ -36,7 +89,7 @@
         )
         {
 
-          global $wpdb;
+          //global $wpdb;
 
           $table_name = $wpdb->base_prefix . Product::TABLE_NAME;
           $serial_number = $_POST['serial_number'];
@@ -152,6 +205,8 @@
                 </div>
 
               </div>
+
+              
 
 
             <?php

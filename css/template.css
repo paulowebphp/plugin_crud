@@ -54,9 +54,38 @@ body{
 .alert1 h2{
     font-size: 2.4rem;
 }
+.footer1{
+    padding:5%;
+    background:#000;
+    color:#fff;
+}
+.footer1 a:hover{
+    color:skyblue;
+}
+.alert1 h3{
+    font-size: 1.4rem;
+    margin-top:0;
+}
+.alert1 p{
+    font-size: 1.2rem;
+}
+.section1{
+    padding:5%;
+    background: #f6f6f6;
+    border-radius: 8px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.16), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 
-
-
+}
+.section1 h3{
+    font-size: 1.6rem;
+    margin-top:0;
+}
+.section1 ul{
+    list-style: circle;
+}
+.section1 li{
+    font-size: 1.4rem;
+}
 
 /*********TOPS E BOTTOMS**************/
 /*********TOPS E BOTTOMS**************/

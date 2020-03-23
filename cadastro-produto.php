@@ -3,7 +3,7 @@ require_once dirname(__FILE__) . '/lib/class-tgm-plugin-activation.php';
 //require_once dirname(__FILE__) .'/inc/cpts.php';
 /*
 Plugin Name: Cadastro de Produtos
-Description: Plugin de cadastro e consulta de produtos. Este plugin faz parte do Portfolio do autor e pretende demonstrar um sistema CRUD básico de cadastro de produtos no Back-End e consulta dos mesmos a partir do seu número de série no Front-End.
+Description: Plugin de cadastro e consulta de produtos. Este plugin faz parte do Portfolio do autor e pretende demonstrar um sistema CRUD básico de um Cadastro de Produtos no Back-End e uma Página de Busca dos mesmos a partir do seu número de série no Front-End.
 Version: 1.0
 Author: Jose Paulo Carvalho
 Author URI: https://fat32.com.br
@@ -175,8 +175,66 @@ class Product
       add_action('template_include',array($this,'add_cpt_template'));
 
       //add_action('init', 'Product::rewrite_rules_for_removing_post_type_slug', 1, 1);
+      add_action('wp_footer', 'Product::meu_plugin_altera_rodape',0);
+      
+      
+      //add_action('plugin_credentials', 'Product::meu_plugin_altera_rodape');
+
+
 
   }//end construct
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  public static function meu_plugin_altera_rodape()
+  {
+
+      ?>
+
+        <div class="footer1">
+          <h3>
+
+            <?php echo __("Acesse o Admin do WordPress para ver o Plugin por dentro:",Product::TEXT_DOMAIN); ?>
+
+          </h3>
+          <p><a target="_blank" href="https://plugin.fat32.com.br/wp-login.php">https://plugin.fat32.com.br/wp-login.php</a></p>
+
+          <p><?php echo __("Login: plugin",Product::TEXT_DOMAIN) . ' | ' . __("Senha: plugin",Product::TEXT_DOMAIN); ?></p>
+
+        </div
+
+      <?php
+
+  }//end meu_plugin_altera_rodape
+
+
+
+
+
+
 
 
 
