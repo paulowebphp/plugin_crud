@@ -47,9 +47,10 @@
 
           <div class="section1">
 
-          <h3><?php echo __("Você pode testar a busca com um dos números de série a seguir:",Product::TEXT_DOMAIN); ?></h3>
+          <h3><?php echo __("Você pode testar a busca com um dos números de série a seguir ",Product::TEXT_DOMAIN); ?><small><?php echo __("(COPIE E COLE):",Product::TEXT_DOMAIN); ?></small></h3>
 
           <ul>
+            
           <?php
             $count = 0;
             foreach( $results2 as $row )
