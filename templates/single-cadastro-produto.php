@@ -27,7 +27,7 @@
 
 
     
-      <div class="row">
+      <div class="row bottom2">
         <div class="col-md-8 col-12">
 
           <form method="post">
@@ -43,7 +43,7 @@
         </div>
 
 
-        <div class="col-md-4 col-12">
+        <div class="col-md-4 col-8">
 
           <div class="section1">
 
