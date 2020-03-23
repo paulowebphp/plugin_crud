@@ -166,8 +166,8 @@
                                 <td><?php echo $row->product; ?></td>
                                 <td><?php echo $row->serial_number; ?></td>
                                 <td><?php echo $row->warranty_term . (((int)$row->warranty_term === 1)?' dia':' dias'); ?></td>
-                                <td><?php echo $dt_modified->format('d/m/Y H:i:s'); ?></td>
-                                <td><?php echo $dt_posted->format('d/m/Y H:i:s'); ?></td>
+                                <td><?php echo $dt_modified->format('d/m/Y') . ' às ' . $dt_modified->format('H:i'); ?></td>
+                                <td><?php echo $dt_posted->format('d/m/Y') . ' às ' . $dt_posted->format('H:i'); ?></td>
                               </tr>
 
                             <?php
