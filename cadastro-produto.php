@@ -220,7 +220,7 @@ class Product
             <?php echo __("Acesse o Admin do WordPress para adicionar você mesmo outros números de série no Plugin:",Product::TEXT_DOMAIN); ?>
 
           </h3>
-          <p><a target="_blank" href="https://plugin.fat32.com.br/wp-login.php">https://plugin.fat32.com.br/wp-login.php</a></p>
+          <p><a target="_blank" href="https://plugin.ext2.com.br/wp-login.php">https://plugin.ext2.com.br/wp-login.php</a></p>
 
           <p><?php echo __("Login: plugin",Product::TEXT_DOMAIN) . ' | ' . __("Senha: plugin",Product::TEXT_DOMAIN); ?></p>
 
